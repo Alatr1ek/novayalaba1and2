@@ -1,15 +1,14 @@
 import re
 
-def to_words(n):
-    return " ".join("ноль один два три четыре пять шесть семь восемь девять".split()[int(c)] for c in str(n))
+def to_words(n): return " ".join("ноль один два три четыре пять шесть семь восемь девять".split()[int(c)] for c in str(n))
 
 min_n, max_n = float('inf'), float('-inf')
 
 with open("1lab.txt") as f:
-    for token in re.findall(r'\b[0-7]+\b', f.read()):
-        if len(token) > 1 and token[-2] == '1' and (n := int(token, 8)) <= 1023:
-            print(token[:-2])
-            min_n, max_n = min(min_n, n), max(max_n, n)
+    for token in re.findall(r'\b(?:[0-7]*1)(?:[0-7]|0[0-7]|1[0-7]|2[0-7]|3[0-7]|4[0-7]|5[0-7]|6[0-7]|7[0-7]|00[0-7]|01[0-7]|02[0-7]|03[0-7]|04[0-7]|05[0-7]|06[0-7]|07[0-7]|10[0-7]|11[0-7]|12[0-7]|13[0-7]|14[0-7]|15[0-7]|16[0-7]|17[0-7]|20[0-7])\b', f.read()):
+        n = int(token, 8)
+        print(token[:-2])
+        min_n, max_n = min(min_n, n), max(max_n, n)
 
 if min_n != float('inf'):
     print(to_words((min_n + max_n) // 2))

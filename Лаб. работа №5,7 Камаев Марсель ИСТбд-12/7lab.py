@@ -9,7 +9,6 @@ def generate_juries():
         K = int(entry_k.get())
         age_limit = int(entry_limit.get())
         candidates = [f"P{i+1}" for i in range(N)]
-        # Для примера: возраст 20+i для каждого кандидата
         age = {name: 20 + i for i, name in enumerate(candidates)}
         juries = list(combinations(candidates, K))
         valid = [jury for jury in juries if sum(age[name] for name in jury) <= age_limit]

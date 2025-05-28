@@ -1,4 +1,5 @@
 import numpy as np
+import matplotlib.pyplot as plt
 
 def print_matrix(matrix, name):
     print(f"\n{name}:")
@@ -66,5 +67,5 @@ def main():
         print_matrix(np.round(result).astype(int), "Результат")
     except np.linalg.LinAlgError:
         print("Ошибка: одна из матриц необратима")
-
+    plot_graphs(F)
 main()

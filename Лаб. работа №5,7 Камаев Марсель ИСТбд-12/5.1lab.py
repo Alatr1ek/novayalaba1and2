@@ -1,6 +1,7 @@
+
 import timeit
 from itertools import combinations
-
+#5.1 и 5.2
 candidates = [f'P{i+1}' for i in range(15)]
 K = 4
 

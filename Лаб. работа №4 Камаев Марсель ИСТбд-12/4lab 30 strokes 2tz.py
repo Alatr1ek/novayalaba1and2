@@ -29,7 +29,17 @@ def build_F(A):
         print("\nA не симметрична относительно побочной диагонали — меняем D и E несимметрично")
         F[:n, :n], F[n:, :n] = D, E
     return F
-
+def plot_graphs(F):
+    plt.figure(figsize=(15, 4))
+    for i, (title, data) in enumerate([
+        ("Тепловая карта F", F),
+        ("Среднее по столбцам", F.mean(axis=0)),
+        ("Гистограмма значений F", F.flatten())
+    ]):
+        plt.subplot(1, 3, i+1)
+        plt.imshow(data, cmap='coolwarm') if i == 0 else plt.plot(data, 'o-') if i == 1 else plt.hist(data, bins=10, color='skyblue')
+        plt.title(title)
+    plt.tight_layout(); plt.show()
 def main():
     K = int(input("Введите K: "))
     A = np.loadtxt('matrix_data.txt', dtype=int)

@@ -6,8 +6,8 @@ def to_words(n):
 min_n, max_n = float('inf'), float('-inf')
 
 with open("1lab.txt") as f:
-    for token in re.findall(r'\b[0-7]+\b', f.read()):
-        if len(token) > 1 and token[-2] == '1' and (n := int(token, 8)) <= 1023:
+    for token in re.findall(r'\b[0-7]*1[0-7]\b', f.read()):
+        if  (n := int(token, 8)) <= 1023:
             print(token[:-2])
             min_n, max_n = min(min_n, n), max(max_n, n)
 

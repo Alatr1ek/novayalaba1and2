@@ -44,7 +44,6 @@ for n in range(2, 21):
 
 df = pd.DataFrame(results, columns=['n', 'Время рекурсивно (с)', 'Время итеративно (с)', 'F(n) рекурс.', 'F(n) итерат.'])
 
-# Отключаем экспоненциальный вывод и задаём округление
 pd.set_option('display.float_format', '{:.3f}'.format)
 
 print(df.to_string(index=False))

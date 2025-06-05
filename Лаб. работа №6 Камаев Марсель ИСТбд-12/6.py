@@ -1,6 +1,7 @@
 import timeit
 import pandas as pd
 import matplotlib.pyplot as plt
+# 6.	F(1) = 1; G(1) = 1; F(n) = (-1)n*(3*F(n–1)–2*G(n–1)), G(n) = F(n–1) /(2n)! + 2*G(n–1), при n >=2
 
 def F_recursive(n):
     if n == 1:

@@ -58,3 +58,4 @@ plt.title('Сравнение времени вычисления F(n)')
 plt.legend()
 plt.grid(True)
 plt.show()
+

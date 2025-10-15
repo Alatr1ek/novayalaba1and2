@@ -10,6 +10,6 @@ with open("1lab.txt") as f:
     nums = list(filter(lambda n: n <= 1023, map(lambda a: int(a, 8), m)))
 
 if nums:
-    filter = filter(lambda a: int(a, 8) <= 1023, m)
-    print("\n".join(map(lambda a: a[:-2], filter)))
+    filter1 = filter(lambda a: int(a, 8) <= 1023, m)
+    print("\n".join(map(lambda a: a[:-2], filter1)))
     print(to_words((min(nums) + max(nums)) // 2))

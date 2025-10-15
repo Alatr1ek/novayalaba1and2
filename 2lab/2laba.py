@@ -1,0 +1,15 @@
+import re
+
+def to_words(n):
+    words = "ноль один два три четыре пять шесть семь восемь девять".split()
+    return " ".join(words[int(c)] for c in str(n))
+
+with open("1lab.txt") as f:
+    content = f.read()
+    m = re.findall(r'\b[0-7]*1[0-7]\b', content)
+    nums = list(filter(lambda n: n <= 1023, map(lambda a: int(a, 8), m)))
+
+if nums:
+    filter1 = filter(lambda a: int(a, 8) <= 1023, m)
+    print("\n".join(map(lambda a: a[:-2], filter1)))
+    print(to_words((min(nums) + max(nums)) // 2))

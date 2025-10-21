@@ -30,29 +30,16 @@ def find_optimal_team_algo(cands, k, stats, budget):
             if current_skill > BEST_TEAM_ALGO[1]:
                 BEST_TEAM_ALGO = (tuple(curr_team), current_skill)
             return
-
-        # 2. Перебор кандидатов
         for i in range(idx, n):
             cand_name = cands[i]
             cand_skill = stats[cand_name]['skill']
             cand_cost = stats[cand_name]['cost']
-
             next_cost = current_cost + cand_cost
-
-            # --- ОГРАНИЧЕНИЕ (ПРУНИНГ) ---
-            # Если добавление кандидата превышает бюджет,
-            # нет смысла идти дальше в этой ветви (и во всех последующих i > current i)
             if next_cost <= budget:
                 rec(curr_team + [cand_name],
                     i + 1,
                     next_cost,
                     current_skill + cand_skill)
-            # В отличие от общего перебора, здесь мы НЕ делаем continue,
-            # так как кандидаты i+1, i+2 и т.д. могут быть более дешевыми
-            # и должны быть рассмотрены. Прунинг тут менее агрессивный,
-            # но все равно сокращает работу по сравнению с перебором всех
-            # комбинаций до проверки.
-
     rec([], 0, 0, 0)
     return BEST_TEAM_ALGO
 
@@ -76,7 +63,7 @@ def find_optimal_team_python(cands, k, stats, budget):
 def main():
     optimal_algo = find_optimal_team_algo(candidates, K, candidate_stats, maxstoimost)
     optimal_py = find_optimal_team_python(candidates, K, candidate_stats, maxstoimost)
-    print(f"Кандидаты: {candidates}, K={K}")
+    print(f"Кандидаты: {candidates}, K=4")
     print(f"Ограничение (максимальный бюджет): 30")
     print(f"Целевая Функция: Максимизация суммарного навыка (Total Skill)")
     print("-" * 30)

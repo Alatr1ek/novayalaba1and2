@@ -27,7 +27,7 @@ def F_iterative(n):
     fact = 1
     for i in range(2, n+1):
         prev_fact = fact
-        for j in range(2*(i-1)+1, 2*i+1):
+        for j in range(2*i-1, 2*i+1):
             prev_fact *= j
         fact = prev_fact
         sign = -1 if i % 2 else 1
@@ -58,4 +58,3 @@ plt.title('Сравнение времени вычисления F(n)')
 plt.legend()
 plt.grid(True)
 plt.show()
-

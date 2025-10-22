@@ -35,8 +35,8 @@ def main():
     print(f"Скорость (10 повторов): алгоритмический = {t_alg:.4f}s, python = {t_py:.4f}s\n")
 
     juries_py = generate_python(candidates, K)
-    print("Первые 5 вариантов (python/itertools):")
-    for j in juries_py[:5]:
+    print("все варианты (python/itertools):")
+    for j in juries_py:
         print("  ", j)
     print(f"\nВсего вариантов: {len(juries_py)}")
 

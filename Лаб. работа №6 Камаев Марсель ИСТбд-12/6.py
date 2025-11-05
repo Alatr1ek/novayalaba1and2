@@ -19,20 +19,18 @@ def factorial(k):
         res *= i
     return res
 
+
 def F_iterative(n):
-    F = [0] * (n+1)
-    G = [0] * (n+1)
+    F = [0] * (n + 1)
+    G = [0] * (n + 1)
     F[1] = 1
     G[1] = 1
-    fact = 1
-    for i in range(2, n+1):
-        prev_fact = fact
-        for j in range(2*i-1, 2*i+1):
-            prev_fact *= j
-        fact = prev_fact
+    fact = 2
+    for i in range(2, n + 1):
+        fact = fact * (2 * i - 1) * (2 * i)
         sign = -1 if i % 2 else 1
-        F[i] = sign * (3 * F[i-1] - 2 * G[i-1])
-        G[i] = F[i-1]/fact + 2 * G[i-1]
+        F[i] = sign * (3 * F[i - 1] - 2 * G[i - 1])
+        G[i] = F[i - 1] / fact + 2 * G[i - 1]
     return F[n]
 
 results = []

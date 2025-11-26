@@ -4,7 +4,7 @@ import random
 root = Tk()
 root.title('Крестики - нолики')
 game_run = True
-field = []  
+field = []
 cross_count = 0
 
 def new_game():
@@ -42,19 +42,21 @@ def click(row, col):
             check_win('0')
 
 def can_win(a1, a2, a3, smb):
-    res = False
-    if a1['text'] == smb and a2['text'] == smb and a3['text'] == '':  
+    if a1['text'] == smb and a2['text'] == smb and a3['text'] == '':
         a3['text'] = '0'
-        res = True
+        return True
     if a1['text'] == smb and a2['text'] == '' and a3['text'] == smb:
         a2['text'] = '0'
-        res = True
-    if a1['text'] == '' and a2['text'] == smb and a3['text'] == smb: 
+        return True
+    if a1['text'] == '' and a2['text'] == smb and a3['text'] == smb:
         a1['text'] = '0'
-        res = True
-    return res
+        return True
+    return False
 
 def computer_move():
+    if field[1][1]['text'] == '':
+        field[1][1]['text'] = '0'
+        return
     for n in range(3):
         if can_win(field[n][0], field[n][1], field[n][2], '0'):
             return
@@ -73,13 +75,19 @@ def computer_move():
         return
     if can_win(field[2][0], field[1][1], field[0][2], 'X'):
         return
+
+    if field[1][1]['text'] == 'X':
+        corners = [(0,0), (0,2), (2,0), (2,2)]
+        for r, c in corners:
+            if field[r][c]['text'] == '':
+                field[r][c]['text'] = '0'
+                return
     while True:
         row = random.randint(0, 2)
         col = random.randint(0, 2)
         if field[row][col]['text'] == '':
             field[row][col]['text'] = '0'
-            break
-
+            return
 for row in range(3):
     line = []
     for col in range(3):
@@ -88,8 +96,6 @@ for row in range(3):
         button.grid(row=row, column=col, sticky='nsew')
         line.append(button)
     field.append(line)
-
 new_button = Button(root, text='Новая игра', command=new_game)
 new_button.grid(row=3, column=0, columnspan=3, sticky='nsew')
-
 root.mainloop()

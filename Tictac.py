@@ -43,13 +43,13 @@ def click(row, col):
 
 def can_win(a1, a2, a3, smb):
     res = False
-    if a1['text'] == smb and a2['text'] == smb and a3['text'] == '':  # Исправлено: было ' '
+    if a1['text'] == smb and a2['text'] == smb and a3['text'] == '':  
         a3['text'] = '0'
         res = True
     if a1['text'] == smb and a2['text'] == '' and a3['text'] == smb:
         a2['text'] = '0'
         res = True
-    if a1['text'] == '' and a2['text'] == smb and a3['text'] == smb:  # Исправлено: было ' '
+    if a1['text'] == '' and a2['text'] == smb and a3['text'] == smb: 
         a1['text'] = '0'
         res = True
     return res
